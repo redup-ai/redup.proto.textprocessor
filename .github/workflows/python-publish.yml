@@ -18,6 +18,19 @@ jobs:
       with:
         python-version: "3.x"
 
+    - name: Install dependencies
+      run: |
+        if [ -f src/python/requirements.txt ]; then pip install -r src/python/requirements.txt; fi
+    - name: Build protos
+      run: |
+        mkdir ./src/proto/redup_proto_textprocessor
+        mv ./src/proto/redup ./src/proto/redup_proto_textprocessor
+        python3 -m grpc_tools.protoc \
+          -I ./src/proto \
+          --python_out=./src/python/ \
+          --grpc_python_out=./src/python/  \
+          ./src/proto/*/*/*/*/*.proto
+
     - name: Build release distributions
       run: |
         cp README.md src/python
