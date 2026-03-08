@@ -21,6 +21,13 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install requests pytest pytest-cov pytest-asyncio
         if [ -f src/python/requirements.txt ]; then pip install -r src/python/requirements.txt; fi
+    - name: Build protos
+      run: |
+        python3 -m grpc_tools.protoc \
+          -I ./src/proto \
+          --python_out=./src/python/redup_proto_textprocessor \
+          --grpc_python_out=./src/python/redup_proto_textprocessor  \
+          ./src/proto/*/*/*/*.proto
     - name: Test with pytest
       run: |
         PYTHONPATH=./src/python/ pytest src/python/tests/ --cov=./src/python/redup_proto_textprocessor --cov-report=xml
