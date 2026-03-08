@@ -1,1 +1,1 @@
-# redup.proto.example
+# redup.proto.textprocessor

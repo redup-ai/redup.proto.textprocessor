@@ -1,0 +1,17 @@
+syntax = "proto3";
+package redup.textprocessor.v1;
+
+option go_package = "./redup/textprocessor/v1";
+
+service TextProcessor {
+  rpc ProcessText(ProcessTextRequest) returns (ProcessTextResponse) {}
+}
+
+message ProcessTextRequest {
+  string request_id = 1;
+  string text = 2;
+}
+
+message ProcessTextResponse {
+  string text = 1;
+}
