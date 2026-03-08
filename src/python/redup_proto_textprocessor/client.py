@@ -5,7 +5,7 @@ from redup_servicekit.grpc.client import BasicAsyncClient
 from .redup.textprocessor.v1.textprocessor_pb2 import (
     ProcessTextRequest
 )
-from .textprocessor_pb2_grpc import TextProcessorStub
+from .redup.textprocessor.v1.textprocessor_pb2_grpc import TextProcessorStub
 
 
 class Client(BasicAsyncClient):
