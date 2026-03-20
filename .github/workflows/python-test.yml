@@ -21,6 +21,9 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install requests pytest pytest-cov pytest-asyncio
         if [ -f src/python/requirements.txt ]; then pip install -r src/python/requirements.txt; fi
+    - name: Install grpcio-tools
+      run: |
+         pip install  grpcio-tools --constraint <(pip freeze)
     - name: Build protos
       run: |
         mkdir ./src/proto/redup_proto_textprocessor
